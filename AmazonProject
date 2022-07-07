@@ -1,0 +1,48 @@
+﻿package demo;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class AmazonProject {
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		String dburl="jdbc:mysql://localhost:3306/amazon";
+		String username="root";
+		String password="root";
+		
+		String queries="SELECT * from products";
+		
+		try {
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection con=DriverManager.getConnection(dburl,username,password);
+		Statement stmt=con.createStatement();
+		ResultSet rs=stmt.executeQuery(queries);
+		
+	while(rs.next()) {
+		
+		System.out.print("serial no: " + rs.getString("serial_no") + "\t");
+		System.out.print("brand:" + rs.getString("brand")+ "\t");
+		System.out.print("model:" + rs.getString("model")+ "\t");
+		System.out.print("price:" + rs.getString("price")+ "\t");
+		System.out.println();
+		
+	}
+		} catch (SQLException ex) { Logger.getLogger(Collection.class.getName()).log(Level.SEVERE, null, ex); 
+		}
+		finally{
+		
+		}
+
+			
+		
+	}
+}
+
